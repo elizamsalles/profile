@@ -1,0 +1,201 @@
+* {
+  /* aplicamos essas propriedades na página toda, para estilizarmos da nossa forma */
+  margin: 0;
+  padding: 0;
+  /* o elementos de border-box, faz com que quando aplicamos padding em algum elemento, ele não altera o tamanho da caixa */
+  box-sizing: border-box;
+}
+
+/* root significa raiz. vamos criar variáveis que irão definir alguns estilos de css, conforme utilizarmos ou não a class light */
+:root {
+    /* variável: nome: --text-color */
+    --text-color: white;
+    --bg-url: url(./assets/bg-dark.jpg);
+    --stroke-color: rgba(255, 255, 255, 0.5);
+    --surface-color: rgba(255, 255, 255, 0.1);
+    --surface-color-hover: rgba(255, 255, 255, 0.05);
+    --highlight-color: rgba(255, 255, 255, 0.2);
+    --switch-bg: url(./assets/moon-stars.svg);
+}
+
+.light {
+    --text-color: black;
+    --bg-url: url(./assets/bg-light.jpg);
+    --stroke-color: rgba(0, 0, 0, 0.5);
+    --surface-color: rgba(0, 0, 0, 0.05);
+    --surface-color-hover: rgba(0, 0, 0, 0.02);
+    --highlight-color: rgba(0, 0, 0, 0.1);
+    --switch-bg: url(./assets/sun.svg);
+}
+
+body {
+  background-image: var(--bg-url);
+  background-repeat: no-repeat;
+  background-position: top center;
+  /* no bg position, se colocamos apenas center, na horizontal ele irá centralizar através do meio da imagem, ou seja, metade da imagem ficaria para cima, "fora da tela". colocamos "top" para centralizar atrabéz do início da imagem */
+  background-size: auto;
+  /* bg cover faz com que a imagem ocupe todo o espaço da "caixa"  */
+}
+
+body * {
+  /* o * faz com que todos os elementos do body estejam com essa fonte e essa cor */
+  font-family: "Inter", sans-serif;
+  color: var(--text-color);
+}
+
+#container {
+  /* border: 1px solid red; */
+  width: 360px;
+  /* height: 712px; */
+  /* no css, geralmente não precisamos definir uma altura. ele segue o conteúdo da página (ou seja, o que está dentro da "caixa") */
+  margin: 56px auto 0;
+  /* o margin auto, faz a caixa centralizar na vertical, entretanto, na horizontal não centraliza */
+  padding: 0 24px;
+}
+
+/* profile */
+
+#profile img {
+  width: 122px;
+  /* display: block; */
+  /* margin: auto; */
+  /* as imagens não ficam alinhadas com o margin auto, porque a tag img tem display inline
+    para centralizar utilizando o margin auto, temos que definir o display como block */
+}
+
+/* OU PODEMOS FAZER ASSIM: centralizamos todo o parent (no caso é a caixa profile), com text-align center. por serem propriedades inline.*/
+
+#profile {
+  text-align: center;
+  /* quando o elemento é inline, podemos centralizar, utilizando o text-align */
+  padding: 24px;
+}
+
+#profile p {
+  margin-top: 8px;
+  font-weight: 500px;
+  line-height: 24px;
+}
+
+/* switch */
+
+.switch {
+  /* nós usamos a posição relativa, junto com a posição absoluta. a posoção absoluta em conjunto com a relativa, faz com que o botão seja absoluto relativo ao tamanho do switch, ou seja, ele irá ser definido conforme o espaço do switch */
+  position: relative;
+  width: 64px;
+  margin: 4px auto;
+}
+
+.switch button {
+    width: 32px;
+    height: 32px;
+    color: white;
+    border-radius: 50%;
+    border: none;
+    background-image: var(--switch-bg);
+    background-repeat: no-repeat;
+    background-position: center;
+
+    position: absolute;
+    left: 0;
+    top: 50%;
+
+    /* se eu colocasse que o botão está na posição absoluta com right 0, ele ficaria totalmente à direita no tamanho do switch. 
+    se não houver a posição relativa no switch, ele fica totalmente à direita em relação ao tamanho da página. */
+    z-index: 1;
+    /* o z-index 1, traz o botão para frente do span. */
+
+    transform: translateY(-50%);
+    /* todo o elemento pode usar o transform para mudar o elemento. o translate y, mexe no elemento no eixo y, ou seja, para cima, ou para baixo. nesse caso, está 50% pra cima do final do switch(span)  */
+}
+
+.light .switch button {
+  right: 0;
+  left: initial;
+}
+
+.switch span {
+  display: block;
+  width: 64px;
+  height: 24px;
+  background-color: var(--surface-color);
+  border: 1px solid var(--stroke-color);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 9999px;
+}
+
+
+
+/* links: */
+
+ul {
+  list-style: none;
+  display: flex;
+  /* o display flex trabalha com os elementos que estão dentro da caixa, ou seja, o efeito fica refletido nos li's. o flex faz com que os elementos se adequem dentro da caixa em linha (por norma), mas também podemos deixar em column */
+  flex-direction: column;
+  /* o gap só é utilizado com o display flex */
+  gap: 16px;
+  padding: 24px 0;
+}
+
+ul li a {
+  display: flex;
+  /* o display flex inserido na tag a, transforma ela em block e ocupa a caixa toda na largura */
+  justify-content: center;
+  /* com o flex, podemos utilizar o justify content para centralizar */
+  align-items: center;
+  /* com o align, podemos centralizar o conteúdo na vertical */
+  /* testar com uma altura do tipo: height: 30px; */
+
+  padding: 16px 24px;
+  background: var(--surface-color);
+  border: 1px solid var(--stroke-color);
+  border-radius: 8px;
+
+  backdrop-filter: blur (4px);
+  -webkit-backdrop-filter: blur(4px);
+  /* o webkit faz com que o atributo funcione em todos os navegadores */
+
+  text-decoration: none;
+  font-weight: 500;
+
+  transform: background 0.2s;
+  /* o transform faz com que a mudança do hover aconteça no tempo em que determinamos, nesse caso 0.2 segundos para mudar o background  */
+}
+
+ul li a:hover {
+  background: var(--surface-color-hover);
+  border: 1.5px solid var(--text-color);
+}
+
+
+/* social links */
+
+.social-links {
+    justify-content: center;
+    display: flex;
+    font-size: 24px;
+    padding: 24px 0;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    border-radius: 50%;
+    padding: 16px;
+}
+
+.social-links a:hover {
+    background: var(--highlight-color);
+    
+    
+}
+
+footer {
+    font-size: 14px;
+    text-align: center;
+    padding: 24px 0;
+}
