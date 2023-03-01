@@ -45,7 +45,9 @@ body * {
 
 #container {
   /* border: 1px solid red; */
-  width: 360px;
+  width: 100%;
+  max-width: 588px; 
+  /* colocamos a largura a 100% da tela, com o max que pode atingir em 588px para ele ficar bonito em todos os tipos de tela. isso fará o fundo "crescer", mas o conteúdo se mantêm do mesmo tamanho*/
   /* height: 712px; */
   /* no css, geralmente não precisamos definir uma altura. ele segue o conteúdo da página (ou seja, o que está dentro da "caixa") */
   margin: 56px auto 0;
