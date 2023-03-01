@@ -20,7 +20,7 @@
 
 .light {
     --text-color: black;
-    --bg-url: url(./assets/bg-light.jpg);
+    --bg-url: url(./assets/bg-light.png);
     --stroke-color: rgba(0, 0, 0, 0.5);
     --surface-color: rgba(0, 0, 0, 0.05);
     --surface-color-hover: rgba(0, 0, 0, 0.02);
@@ -33,8 +33,10 @@ body {
   background-repeat: no-repeat;
   background-position: top center;
   /* no bg position, se colocamos apenas center, na horizontal ele irá centralizar através do meio da imagem, ou seja, metade da imagem ficaria para cima, "fora da tela". colocamos "top" para centralizar atrabéz do início da imagem */
-  background-size: auto;
+  background-size: cover;
   /* bg cover faz com que a imagem ocupe todo o espaço da "caixa"  */
+  height: 100vh;
+  /* 100vh altura de 100% da tela. não deixa espaço em branco na página */
 }
 
 body * {
@@ -200,4 +202,17 @@ footer {
     font-size: 14px;
     text-align: center;
     padding: 24px 0;
+}
+
+@media (min-width: 700px) {
+  /* aqui está indicando que de 700 px pra cima, serão aplicadas essas regras: */
+  :root {
+    --bg-url: url(./assets/bg-desktop-dark.jpg);
+  }
+
+  .light {
+    --bg-url: url(./assets/bg-desktop-light.jpg);
+  }
+
+  /* de certa forma, esse media serve para ajustar o conteúdo do site em diferentes tamanhos de tela */
 }
