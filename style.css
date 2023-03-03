@@ -111,11 +111,12 @@ body * {
 
     transform: translateY(-50%);
     /* todo o elemento pode usar o transform para mudar o elemento. o translate y, mexe no elemento no eixo y, ou seja, para cima, ou para baixo. nesse caso, está 50% pra cima do final do switch(span)  */
+
+    animation: slide-back 0.3s; 
 }
 
 .light .switch button {
-  right: 0;
-  left: initial;
+  animation: slide-in 0.3s forwards; 
 }
 
 .switch span {
@@ -215,4 +216,25 @@ footer {
   }
 
   /* de certa forma, esse media serve para ajustar o conteúdo do site em diferentes tamanhos de tela */
+}
+
+/* animação com css */
+
+@keyframes slide-in {
+  from {
+    left: 0;
+  }
+  to {
+    left: 50%
+  }
+}
+
+@keyframes slide-back {
+  from {
+    left: 50%;
+  }
+  to {
+    left: 0;
+  }
+  
 }
